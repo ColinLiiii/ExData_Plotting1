@@ -1,0 +1,7 @@
+data<-read.table("household_power_consumption.txt",header=T,sep=";")
+data$Date=as.Date(data$Date,format="%d/%m/%Y")
+data$Time<-strptime(data$Time,format="%H:%M:%S")
+data$Global_active_power<-as.numeric(as.character(data$Global_active_power))
+hist(data$Global_active_power[!is.na(data$Global_active_power)],col="red",xlab="Global Active Power(kilowatts)",main="Global Active Power")
+dev.copy(png,file="plot1.png")
+dev.off()
